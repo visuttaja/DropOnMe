@@ -70,7 +70,7 @@ namespace DropOnMe
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void playlistbutton_Click(object sender, EventArgs e)
         {
             string urlSoittolista = "\""+textBox2.Text+"\"";
             System.Environment.CurrentDirectory = @".\";
