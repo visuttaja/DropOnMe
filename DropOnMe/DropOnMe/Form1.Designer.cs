@@ -31,6 +31,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.OutFolder = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -66,9 +67,19 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // OutFolder
+            // 
+            this.OutFolder.Location = new System.Drawing.Point(506, 352);
+            this.OutFolder.Name = "OutFolder";
+            this.OutFolder.Size = new System.Drawing.Size(185, 59);
+            this.OutFolder.TabIndex = 4;
+            this.OutFolder.Text = "Open Folder";
+            this.OutFolder.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(802, 518);
+            this.Controls.Add(this.OutFolder);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -85,6 +96,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button OutFolder;
     }
 }
 
