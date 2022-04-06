@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DropOnMe", "DropOnMe\DropOnMe.csproj", "{E9792283-1E5A-443F-A921-5ACAE15027E7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E9792283-1E5A-443F-A921-5ACAE15027E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9792283-1E5A-443F-A921-5ACAE15027E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9792283-1E5A-443F-A921-5ACAE15027E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9792283-1E5A-443F-A921-5ACAE15027E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0337CD82-4227-4A92-8ADF-CE32EEA57BD5}
+	EndGlobalSection
+EndGlobal
