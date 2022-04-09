@@ -1,4 +1,5 @@
 echo off
+
 echo hel lo c
 echo parameter1 is  %1
 set app_root=%cd%
