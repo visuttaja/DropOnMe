@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Runtime.InteropServices;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+
 
 
 
@@ -70,46 +73,110 @@ namespace DropOnMe
             }
         }
 
+        
+        //**********************
+        static StringBuilder output = new StringBuilder();
+        void SortOutputHandler(object sendingProcess,
+           DataReceivedEventArgs outLine)
+        {
+            int numOutputLines=0;  
+            
+            // Collect the sort command output.
+            if (!String.IsNullOrEmpty(outLine.Data))
+            {
+                numOutputLines++;
+
+                // Add the text to the collected output.
+                output.Append(Environment.NewLine +
+                    $"[{numOutputLines}] - {outLine.Data}");
+                
+
+            }
+            logText(output.ToString());
+
+            //Console.WriteLine(output.ToString());
+        }
+        //************************
         private void playlistbutton_Click(object sender, EventArgs e)
         {
-            string urlSoittolista = "\""+textBox_playlistaddress.Text+"\"";
+            string urlSoittolista = "\"" + textBox_playlistaddress.Text + "\"";
             System.Environment.CurrentDirectory = @".\";
             //System.Diagnostics.Process.Start("run1_setenv.bat", urlSoittolista);
             //urlSoittolista = urlSoittolista.Replace("&", "^&");
-            ExecuteCommand("setenv_und_run.bat "+ urlSoittolista);
-
-        }
-       private void ExecuteCommand(string command)
-        {
 
             var startInfo = new ProcessStartInfo();
-            string anyCommand;
-            startInfo.UseShellExecute = true;
-            startInfo.Arguments = "/K ";
+
+            startInfo.UseShellExecute = false;
+            startInfo.Arguments = "/k ";
             startInfo.WorkingDirectory = @".";
 
             startInfo.FileName = @"C:\Windows\System32\cmd.exe";
             startInfo.Verb = "runas";
-            startInfo.Arguments = "/k "+ command;
-            
-            Process.Start(startInfo);
+            startInfo.Arguments = "/k ";
+            startInfo.RedirectStandardInput = true;
+            //            startInfo.RedirectStandardOutput = true;
 
+            Process process = Process.Start(startInfo);
+
+            downloadPlaylist(process,urlSoittolista);
+
+        }
+        //**************************************
+        static System.Windows.Forms.TextBox tb;
+        
+
+        [DllImport("kernel32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool AllocConsole();
+
+        //****************************************
+        private void downloadPlaylist(Process cmd,string urlPlaylist)
+
+        {
+            String firstBatch = "setenv_und_run.bat " + urlPlaylist;
+           
+            AllocConsole();
+            // start work
+            Console.WriteLine("log messages...");
             
-            Console.WriteLine("pause");
+            tb = this.textBox_logbox;                                    
+            StreamWriter inputStreamWriter =cmd.StandardInput;
+            inputStreamWriter.WriteLine(firstBatch);
+            inputStreamWriter.Flush();
+            inputStreamWriter.WriteLine("dir");
+            inputStreamWriter.Flush();
+            inputStreamWriter.WriteLine("date /t");
+            inputStreamWriter.Flush();
+            //startInfo.RedirectStandardInput = false;
+
+           //this.textBox_logbox.Text = command;
+                                 
             /*
-            process.OutputDataReceived += (object sender, DataReceivedEventArgs e) =>
-                Console.WriteLine("output>>" + e.Data);
+            process.OutputDataReceived += SortOutputHandler;                   
             process.BeginOutputReadLine();
-
-
-            process.ErrorDataReceived += (object sender, DataReceivedEventArgs e) =>
-                Console.WriteLine("error>>" + e.Data);
-            process.BeginErrorReadLine();
             */
-            //process.WaitForExit();
-
+            //textBox_logbox.Text = output.ToString();                        
             // Console.WriteLine("ExitCode: {0}", process.ExitCode);
-            // process.Close();
+            
+        }
+        
+        //********************************************
+        delegate void SetTextCallback(string text);
+
+        public  void logText(string text)
+        {
+            // InvokeRequired required compares the thread ID of the
+            // calling thread to the thread ID of the creating thread.
+            // If these threads are different, it returns true.
+            if (this.textBox_logbox.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(logText);
+                this.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                this.textBox_logbox.Text = text;
+            }
         }
     }
 }

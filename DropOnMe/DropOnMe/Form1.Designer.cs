@@ -36,10 +36,14 @@
             // textBox_logbox
             // 
             this.textBox_logbox.AllowDrop = true;
+            this.textBox_logbox.BackColor = System.Drawing.Color.Black;
+            this.textBox_logbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_logbox.ForeColor = System.Drawing.Color.Lime;
             this.textBox_logbox.Location = new System.Drawing.Point(12, 56);
             this.textBox_logbox.Multiline = true;
             this.textBox_logbox.Name = "textBox_logbox";
-            this.textBox_logbox.Size = new System.Drawing.Size(768, 145);
+            this.textBox_logbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_logbox.Size = new System.Drawing.Size(768, 238);
             this.textBox_logbox.TabIndex = 1;
             this.textBox_logbox.Text = "Log screen 2";
             this.textBox_logbox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.textBox1_MouseDown);
@@ -47,18 +51,21 @@
             // textBox_playlistaddress
             // 
             this.textBox_playlistaddress.AllowDrop = true;
-            this.textBox_playlistaddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_playlistaddress.Location = new System.Drawing.Point(12, 207);
+            this.textBox_playlistaddress.BackColor = System.Drawing.Color.Black;
+            this.textBox_playlistaddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_playlistaddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.textBox_playlistaddress.Location = new System.Drawing.Point(22, 300);
             this.textBox_playlistaddress.Multiline = true;
             this.textBox_playlistaddress.Name = "textBox_playlistaddress";
-            this.textBox_playlistaddress.Size = new System.Drawing.Size(768, 95);
+            this.textBox_playlistaddress.Size = new System.Drawing.Size(768, 43);
             this.textBox_playlistaddress.TabIndex = 2;
             this.textBox_playlistaddress.Text = "https://www.youtube.com/watch?v=QNXGWtOUKJI&list=PLkEkWhykb_XSk6dxMj7y7TTnlBOo6Oa" +
     "EB";
             // 
             // playlistButton
             // 
-            this.playlistButton.Location = new System.Drawing.Point(143, 334);
+            this.playlistButton.ForeColor = System.Drawing.Color.Black;
+            this.playlistButton.Location = new System.Drawing.Point(36, 414);
             this.playlistButton.Name = "playlistButton";
             this.playlistButton.Size = new System.Drawing.Size(317, 78);
             this.playlistButton.TabIndex = 3;
@@ -68,10 +75,12 @@
             // 
             // Form1
             // 
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(802, 518);
             this.Controls.Add(this.playlistButton);
             this.Controls.Add(this.textBox_playlistaddress);
             this.Controls.Add(this.textBox_logbox);
+            this.ForeColor = System.Drawing.Color.Aqua;
             this.Name = "Form1";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.Form1_Load);
