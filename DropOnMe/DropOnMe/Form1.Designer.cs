@@ -28,33 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox_logbox = new System.Windows.Forms.TextBox();
+            this.textBox_playlistaddress = new System.Windows.Forms.TextBox();
             this.playlistButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // textBox1
+            // textBox_logbox
             // 
-            this.textBox1.AllowDrop = true;
-            this.textBox1.Location = new System.Drawing.Point(12, 56);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(768, 145);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "Log screen 2";
-            this.textBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.textBox1_MouseDown);
+            this.textBox_logbox.AllowDrop = true;
+            this.textBox_logbox.Location = new System.Drawing.Point(12, 56);
+            this.textBox_logbox.Multiline = true;
+            this.textBox_logbox.Name = "textBox_logbox";
+            this.textBox_logbox.Size = new System.Drawing.Size(768, 145);
+            this.textBox_logbox.TabIndex = 1;
+            this.textBox_logbox.Text = "Log screen 2";
+            this.textBox_logbox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.textBox1_MouseDown);
             // 
-            // textBox2
+            // textBox_playlistaddress
             // 
-            this.textBox2.AllowDrop = true;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(12, 207);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(768, 95);
-            this.textBox2.TabIndex = 2;
-            this.textBox2.Text = "https://www.youtube.com/watch?v=QRmmISj6Rrw&list=PLfdtiltiRHWFD41D_LDomY1Fb-O9MtF" +
-    "qq";
+            this.textBox_playlistaddress.AllowDrop = true;
+            this.textBox_playlistaddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_playlistaddress.Location = new System.Drawing.Point(12, 207);
+            this.textBox_playlistaddress.Multiline = true;
+            this.textBox_playlistaddress.Name = "textBox_playlistaddress";
+            this.textBox_playlistaddress.Size = new System.Drawing.Size(768, 95);
+            this.textBox_playlistaddress.TabIndex = 2;
+            this.textBox_playlistaddress.Text = "https://www.youtube.com/watch?v=QNXGWtOUKJI&list=PLkEkWhykb_XSk6dxMj7y7TTnlBOo6Oa" +
+    "EB";
             // 
             // playlistButton
             // 
@@ -70,8 +70,8 @@
             // 
             this.ClientSize = new System.Drawing.Size(802, 518);
             this.Controls.Add(this.playlistButton);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBox_playlistaddress);
+            this.Controls.Add(this.textBox_logbox);
             this.Name = "Form1";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -82,8 +82,8 @@
 
 
         #endregion
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox_logbox;
+        private System.Windows.Forms.TextBox textBox_playlistaddress;
         private System.Windows.Forms.Button playlistButton;
     }
 }

@@ -34,9 +34,9 @@ namespace DropOnMe
         }
         private void AlustaDropCallbackit(object sender, EventArgs e)
         {
-            textBox2.DragEnter += new DragEventHandler(miunDragEnterHandler);
+            textBox_playlistaddress.DragEnter += new DragEventHandler(miunDragEnterHandler);
          //   textBox2.MouseDown += new MouseEventHandler(textBox1_MouseDown);
-            textBox2.DragDrop += new DragEventHandler(miunDropHandler);
+            textBox_playlistaddress.DragDrop += new DragEventHandler(miunDropHandler);
 
            
         }
@@ -72,7 +72,7 @@ namespace DropOnMe
 
         private void playlistbutton_Click(object sender, EventArgs e)
         {
-            string urlSoittolista = "\""+textBox2.Text+"\"";
+            string urlSoittolista = "\""+textBox_playlistaddress.Text+"\"";
             System.Environment.CurrentDirectory = @".\";
             //System.Diagnostics.Process.Start("run1_setenv.bat", urlSoittolista);
             //urlSoittolista = urlSoittolista.Replace("&", "^&");
@@ -81,16 +81,21 @@ namespace DropOnMe
         }
        private void ExecuteCommand(string command)
         {
-        
-            var processInfo = new ProcessStartInfo("cmd.exe", "/k " + command);
-            processInfo.CreateNoWindow = false;
-            processInfo.UseShellExecute = false;
-            
-            //processInfo.RedirectStandardError = true;
-            //processInfo.RedirectStandardOutput = true;
 
-            var process = Process.Start(processInfo);
-            Console.WriteLine("qwerqwrq");
+            var startInfo = new ProcessStartInfo();
+            string anyCommand;
+            startInfo.UseShellExecute = true;
+            startInfo.Arguments = "/K ";
+            startInfo.WorkingDirectory = @".";
+
+            startInfo.FileName = @"C:\Windows\System32\cmd.exe";
+            startInfo.Verb = "runas";
+            startInfo.Arguments = "/k "+ command;
+            
+            Process.Start(startInfo);
+
+            
+            Console.WriteLine("pause");
             /*
             process.OutputDataReceived += (object sender, DataReceivedEventArgs e) =>
                 Console.WriteLine("output>>" + e.Data);
@@ -103,8 +108,8 @@ namespace DropOnMe
             */
             //process.WaitForExit();
 
-           // Console.WriteLine("ExitCode: {0}", process.ExitCode);
-           // process.Close();
+            // Console.WriteLine("ExitCode: {0}", process.ExitCode);
+            // process.Close();
         }
     }
 }
