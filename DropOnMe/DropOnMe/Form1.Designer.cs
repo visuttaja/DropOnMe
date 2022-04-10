@@ -57,10 +57,10 @@
             this.textBox_playlistaddress.Location = new System.Drawing.Point(22, 300);
             this.textBox_playlistaddress.Multiline = true;
             this.textBox_playlistaddress.Name = "textBox_playlistaddress";
-            this.textBox_playlistaddress.Size = new System.Drawing.Size(768, 43);
+            this.textBox_playlistaddress.Size = new System.Drawing.Size(768, 100);
             this.textBox_playlistaddress.TabIndex = 2;
-            this.textBox_playlistaddress.Text = "https://www.youtube.com/watch?v=QNXGWtOUKJI&list=PLkEkWhykb_XSk6dxMj7y7TTnlBOo6Oa" +
-    "EB";
+            this.textBox_playlistaddress.Text = "https://www.youtube.com/watch?v=MchENkV93xc&list=PLkEkWhykb_XRTS1asRRAIPP9L_MwZCT" +
+    "u3";
             // 
             // playlistButton
             // 

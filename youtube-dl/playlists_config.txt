@@ -1,0 +1,5 @@
+-f bestaudio 
+--extract-audio 
+--audio-format mp3
+-o 'output/playlists/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'
+
