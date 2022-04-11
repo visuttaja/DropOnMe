@@ -49,17 +49,17 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>KAu/X3PlY4bMZATPHAE32ihyRMi08WIgs0ShAWlymJ0=</dsig:DigestValue>
+        <dsig:DigestValue>1IMZB5vJrOtfBPQYghzMoQfw1BNy/h/jIikp14y9r1s=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="DropOnMe.exe.config" size="189">
+  <file name="DropOnMe.exe.config" size="186">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>6N7MliNbVJSIAIPrecIshMbZ7zEoKLr5SQvud4LDUOw=</dsig:DigestValue>
+      <dsig:DigestValue>eSEJjkfolEEv39DK/g+IzGhJd0CZjqwXxowAEpBp2AM=</dsig:DigestValue>
     </hash>
   </file>
   <file name="TextFile1.txt" size="3">

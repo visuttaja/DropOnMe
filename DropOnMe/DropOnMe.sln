@@ -7,6 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DropOnMe", "DropOnMe\DropOn
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4DBDBE8E-CD87-4E52-98B5-07CEA5847715}"
 	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
 		..\youtube-dl\playlists_config.txt = ..\youtube-dl\playlists_config.txt
 		..\setenv_und_run.bat = ..\setenv_und_run.bat
 	EndProjectSection
