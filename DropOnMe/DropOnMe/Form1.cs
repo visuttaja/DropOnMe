@@ -133,7 +133,7 @@ namespace DropOnMe
         private void downloadPlaylist(Process cmd,string urlPlaylist)
 
         {
-            //testiero
+            //testiero2
             String firstBatch = "setenv_und_run.bat " + urlPlaylist;
            
             AllocConsole();
