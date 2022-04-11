@@ -133,7 +133,11 @@ namespace DropOnMe
         private void downloadPlaylist(Process cmd,string urlPlaylist)
 
         {
-            //testiero3
+            //testiero4
+            //next git lines at target laptop
+            //got sync working....at least one time
+            //git fetch origin main
+            //git reset --hard FETCH_HEAD
             String firstBatch = "setenv_und_run.bat " + urlPlaylist;
            
             AllocConsole();
