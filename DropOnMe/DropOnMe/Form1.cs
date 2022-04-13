@@ -183,5 +183,11 @@ namespace DropOnMe
                 this.textBox_logbox.Text = text;
             }
         }
+//*****************************************************
+        private void ExplorerButton_Click(object sender, EventArgs e)
+        {
+
+            Process.Start(@".\output\playlists");
+        }
     }
 }
