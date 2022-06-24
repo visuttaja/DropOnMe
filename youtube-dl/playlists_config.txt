@@ -1,6 +1,6 @@
--f bestaudio 
---extract-audio 
---audio-format mp3
+-f 18  
 --keep-video
+--audio-format mp3
+--extract-audio 
 -o 'output/playlists/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'
 

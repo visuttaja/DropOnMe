@@ -138,7 +138,7 @@ namespace DropOnMe
             //got sync working....at least one time,two time...
             //git fetch origin main
             //git reset --hard FETCH_HEAD
-            String firstBatch = "setenv_und_run.bat " + urlPlaylist;
+            String firstBatch = "start setenv_und_run.bat " + urlPlaylist;
            
             AllocConsole();
             // start work
