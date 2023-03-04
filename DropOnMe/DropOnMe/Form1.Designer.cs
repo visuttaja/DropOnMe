@@ -39,7 +39,7 @@
             this.textBox_logbox.AllowDrop = true;
             this.textBox_logbox.BackColor = System.Drawing.Color.Black;
             this.textBox_logbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_logbox.ForeColor = System.Drawing.Color.Lime;
+            this.textBox_logbox.ForeColor = System.Drawing.Color.Yellow;
             this.textBox_logbox.Location = new System.Drawing.Point(12, 109);
             this.textBox_logbox.Multiline = true;
             this.textBox_logbox.Name = "textBox_logbox";
@@ -60,8 +60,7 @@
             this.textBox_playlistaddress.Name = "textBox_playlistaddress";
             this.textBox_playlistaddress.Size = new System.Drawing.Size(768, 100);
             this.textBox_playlistaddress.TabIndex = 2;
-            this.textBox_playlistaddress.Text = "https://www.youtube.com/watch?v=MchENkV93xc&list=PLkEkWhykb_XRTS1asRRAIPP9L_MwZCT" +
-    "u3";
+            this.textBox_playlistaddress.Text = "https://www.youtube.com/playlist?list=PLkEkWhykb_XSYwd3waLtmeiFUe9_0uN7j";
             // 
             // playlistButton
             // 
@@ -88,14 +87,13 @@
             // Form1
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(802, 518);
+            this.ClientSize = new System.Drawing.Size(1453, 893);
             this.Controls.Add(this.ExplorerButton);
             this.Controls.Add(this.playlistButton);
             this.Controls.Add(this.textBox_playlistaddress);
             this.Controls.Add(this.textBox_logbox);
             this.ForeColor = System.Drawing.Color.Aqua;
             this.Name = "Form1";
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

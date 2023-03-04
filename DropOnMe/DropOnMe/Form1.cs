@@ -21,6 +21,7 @@ namespace DropOnMe
         public Form1()
         {
             InitializeComponent();
+            
         }
                                                                                
 
@@ -28,20 +29,24 @@ namespace DropOnMe
         {
            
         }
-        
 
+   
         private void Form1_Load(object sender, EventArgs e)
         {
             AlustaDropCallbackit(sender,  e);
+            
+            //AttachConsole(ATTACH_PARENT_PROCESS);
 
         }
+        [DllImport("kernel32.dll")]
+        static extern bool AttachConsole(int dwProcessId);
+        private const int ATTACH_PARENT_PROCESS = -1;
+                       
         private void AlustaDropCallbackit(object sender, EventArgs e)
         {
             textBox_playlistaddress.DragEnter += new DragEventHandler(miunDragEnterHandler);
          //   textBox2.MouseDown += new MouseEventHandler(textBox1_MouseDown);
-            textBox_playlistaddress.DragDrop += new DragEventHandler(miunDropHandler);
-
-           
+            textBox_playlistaddress.DragDrop += new DragEventHandler(miunDropHandler);           
         }
 
         private void textBox1_MouseDown(object sender, MouseEventArgs e)
@@ -53,6 +58,7 @@ namespace DropOnMe
         //*************************************
         private void miunDropHandler(object sender, DragEventArgs e)
         {
+
             TextBox tb = (TextBox)sender;
             tb.Text = (string)e.Data.GetData(DataFormats.Text);
             tb.SelectAll();
@@ -71,9 +77,7 @@ namespace DropOnMe
             {
                 e.Effect = DragDropEffects.None;
             }
-        }
-
-        
+        }        
         //**********************
         static StringBuilder output = new StringBuilder();
         void SortOutputHandler(object sendingProcess,
@@ -96,73 +100,62 @@ namespace DropOnMe
 
             //Console.WriteLine(output.ToString());
         }
+ 
         //************************
+        private void writeCommand(Process ps,string command)
+        {
+            ps.StandardInput.WriteLine(command);
+            ps.StandardInput.Flush();
+        }                 
+        //**************************
         private void playlistbutton_Click(object sender, EventArgs e)
         {
+                                            
             string urlSoittolista = "\"" + textBox_playlistaddress.Text + "\"";
             System.Environment.CurrentDirectory = @".\";
             //System.Diagnostics.Process.Start("run1_setenv.bat", urlSoittolista);
             //urlSoittolista = urlSoittolista.Replace("&", "^&");
 
             var startInfo = new ProcessStartInfo();
-
+            
             startInfo.UseShellExecute = false;
-            startInfo.Arguments = "/k ";
             startInfo.WorkingDirectory = @".";
 
             startInfo.FileName = @"C:\Windows\System32\cmd.exe";
             startInfo.Verb = "runas";
-            startInfo.Arguments = "/k ";
+            
+            startInfo.Arguments = "K";
             startInfo.RedirectStandardInput = true;
-            //            startInfo.RedirectStandardOutput = true;
 
             Process process = Process.Start(startInfo);
+            YtListParser parser = new YtListParser(process, this.textBox_logbox,urlSoittolista);
 
+            parser.writeCommand("time /t");
+            parser.writeFormatsToTextfile();
+            //            startInfo.RedirectStandardOutput = true;                        
             downloadPlaylist(process,urlSoittolista);
 
-        }
-        //**************************************
-        static System.Windows.Forms.TextBox tb;
-        
-
-        [DllImport("kernel32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool AllocConsole();
-
+        }                             
         //****************************************
         private void downloadPlaylist(Process cmd,string urlPlaylist)
 
         {
-            //testiero5
-            //next git lines at target laptop
-            //got sync working....at least one time,two time...
-            //git fetch origin main
-            //git reset --hard FETCH_HEAD
-            String firstBatch = "start setenv_und_run.bat " + urlPlaylist;
-           
-            AllocConsole();
-            // start work
-            Console.WriteLine("log messages...");
             
-            tb = this.textBox_logbox;                                    
-            StreamWriter inputStreamWriter =cmd.StandardInput;
-            inputStreamWriter.WriteLine(firstBatch);
-            inputStreamWriter.Flush();
-            inputStreamWriter.WriteLine("dir");
-            inputStreamWriter.Flush();
-            inputStreamWriter.WriteLine("date /t");
-            inputStreamWriter.Flush();
+            StreamWriter inputStreamWriter = cmd.StandardInput;
+                        
+            String firstBatch = "call setenv_und_run.bat " + urlPlaylist;
+            writeCommand(cmd, firstBatch);
             //startInfo.RedirectStandardInput = false;
 
-           //this.textBox_logbox.Text = command;
-                                 
+            //this.textBox_logbox.Text = command;
+
             /*
             process.OutputDataReceived += SortOutputHandler;                   
             process.BeginOutputReadLine();
             */
             //textBox_logbox.Text = output.ToString();                        
             // Console.WriteLine("ExitCode: {0}", process.ExitCode);
-            
+
         }
         
         //********************************************
