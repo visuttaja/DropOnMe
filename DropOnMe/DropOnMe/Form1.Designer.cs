@@ -32,6 +32,7 @@
             this.textBox_playlistaddress = new System.Windows.Forms.TextBox();
             this.playlistButton = new System.Windows.Forms.Button();
             this.ExplorerButton = new System.Windows.Forms.Button();
+            this.formatsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox_logbox
@@ -58,7 +59,7 @@
             this.textBox_playlistaddress.Location = new System.Drawing.Point(22, 300);
             this.textBox_playlistaddress.Multiline = true;
             this.textBox_playlistaddress.Name = "textBox_playlistaddress";
-            this.textBox_playlistaddress.Size = new System.Drawing.Size(768, 100);
+            this.textBox_playlistaddress.Size = new System.Drawing.Size(1000, 100);
             this.textBox_playlistaddress.TabIndex = 2;
             this.textBox_playlistaddress.Text = "https://www.youtube.com/playlist?list=PLkEkWhykb_XSYwd3waLtmeiFUe9_0uN7j";
             // 
@@ -84,10 +85,22 @@
             this.ExplorerButton.UseVisualStyleBackColor = true;
             this.ExplorerButton.Click += new System.EventHandler(this.ExplorerButton_Click);
             // 
+            // formatsButton
+            // 
+            this.formatsButton.ForeColor = System.Drawing.Color.Black;
+            this.formatsButton.Location = new System.Drawing.Point(456, 425);
+            this.formatsButton.Name = "formatsButton";
+            this.formatsButton.Size = new System.Drawing.Size(260, 67);
+            this.formatsButton.TabIndex = 5;
+            this.formatsButton.Text = "Print Formats";
+            this.formatsButton.UseVisualStyleBackColor = true;
+            this.formatsButton.Click += new System.EventHandler(this.formatsButton_Click);
+            // 
             // Form1
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(1453, 893);
+            this.Controls.Add(this.formatsButton);
             this.Controls.Add(this.ExplorerButton);
             this.Controls.Add(this.playlistButton);
             this.Controls.Add(this.textBox_playlistaddress);
@@ -106,6 +119,7 @@
         private System.Windows.Forms.TextBox textBox_playlistaddress;
         private System.Windows.Forms.Button playlistButton;
         private System.Windows.Forms.Button ExplorerButton;
+        private System.Windows.Forms.Button formatsButton;
     }
 }
 

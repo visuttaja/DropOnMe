@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DropOnMe.exe" size="20480">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DropOnMe.exe" size="104448">
       <assemblyIdentity name="DropOnMe" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>isFjPT6KfjDYvxMBwkWsqw9fyIuSgT9a954iPHTCv+c=</dsig:DigestValue>
+        <dsig:DigestValue>y9pOxY2vQFu1TMm5lxkAnHUf9BO2ZqljdWB6u3aGkH0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -173,13 +173,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="DropOnMe.exe.config" size="567">
+  <file name="DropOnMe.exe.config" size="559">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>CFPlSIZIeaH5xxJncIglOF45uu/r1UGsnZPZL9GBkOY=</dsig:DigestValue>
+      <dsig:DigestValue>FwTRCuxUgsPBqzMM3VKDML3ovaWmRcLGXm+Dsbr7XdU=</dsig:DigestValue>
     </hash>
   </file>
   <file name="TextFile1.txt" size="3">

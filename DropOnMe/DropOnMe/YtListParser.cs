@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
+using System.Threading;
+using Newtonsoft.Json.Linq;
 
 namespace DropOnMe
 {
@@ -30,7 +32,7 @@ namespace DropOnMe
         {
             
             thisProcess.StandardInput.WriteLine(command);
-            //thisProcess.StandardInput.Flush();
+            thisProcess.StandardInput.Flush();
         }
         public void writeFormatsToTextfile()
         {
@@ -38,32 +40,60 @@ namespace DropOnMe
             //Console.SetWindowSize(180, 60);
             Console.WriteLine(conmsg);
 
-            
+            writeCommand("color 1A");
             writeCommand( "cd youtube-dl");
             writeCommand( "dir");
             writeCommand( "yt-dlp -j --flat-playlist " + urlPlaylist + ">" + fileInfosJsonFileName);
-            
-
-
-            string fileInfosJsonString = File.ReadAllText("./youtube-dl/"+fileInfosJsonFileName);
 
 
 
-            JsonTextReader reader = new JsonTextReader(new StringReader(fileInfosJsonString));
-                           reader.SupportMultipleContent = true;
+            //string fileInfosJsonString = File.ReadAllText("./youtube-dl/"+fileInfosJsonFileName);
+            string fileInfosJsonString = readFileWaitForReady("./youtube-dl/" + fileInfosJsonFileName);
 
-                var serializer = new Newtonsoft.Json.JsonSerializer();
-                while (reader.Read())
+
+            JsonTextReader nameReader = new JsonTextReader(new StringReader(fileInfosJsonString));
+            nameReader.SupportMultipleContent = true;
+
+                var nameSerializer = new Newtonsoft.Json.JsonSerializer();
+                while (nameReader.Read())
                 {
-                    if (reader.TokenType == JsonToken.StartObject)
+                    if (nameReader.TokenType == JsonToken.StartObject)
                     {
-                        YtFileInfo p = serializer.Deserialize<YtFileInfo>(reader);
+                        YtFileInfo p = nameSerializer.Deserialize<YtFileInfo>(nameReader);
                         string fileUrl = p.original_url;
                     Console.WriteLine("osoite: " + fileUrl);
-                    //writeCommand("yt-dlp -F " + fileUrl + ">" + "currentFormats.txt");
-                    //writeCommand("echo youtubevideon osoite:" + fileUrl);
-                    //writeCommand("echo otsikko:" + p.title);
-                    Console.WriteLine("otsikko: " + p.title);
+                    string dumpFileName = "./dumps/currentDump.txt";
+                    string dumpCommand = "call yt-dlp --dump-json " + "\"" + fileUrl + "\"" + ">" + dumpFileName;
+
+                                        writeCommand(dumpCommand);
+                    
+                    
+                    string dumpJsonString = readFileWaitForReady("./youtube-dl/" + dumpFileName);
+           
+                    
+                    JsonTextReader dumpReader = new JsonTextReader(new StringReader(dumpJsonString));
+                    var dumpSerializer = new Newtonsoft.Json.JsonSerializer();
+                    while (dumpReader.Read())
+                    {
+                        if (dumpReader.TokenType == JsonToken.StartObject)
+                        {
+                            
+                            dynamic stuff = JObject.Parse(dumpJsonString);
+                            string dur1 = stuff.duration_string;
+                            
+                            YtdlpDump d = dumpSerializer.Deserialize<YtdlpDump>(dumpReader);
+                            string dur = d.duration_string;
+                            
+                            foreach (Format f in d.formats)
+                            {
+                                prettyPrintFormats(d,f);                                
+                            }
+                            Console.WriteLine(dur);
+                        }
+                    }
+                            //writeCommand("echo youtubevideon osoite:" + fileUrl);
+                            //writeCommand("echo otsikko:" + p.title);
+                            Console.WriteLine("otsikko: " + p.title);
                     writeCommand("yt-dlp -F " + fileUrl );
                     //string formatInfo = File.ReadAllText("./youtube-dl/" + "currentFormats.txt");
                     logBox.AppendText(fileUrl+ Environment.NewLine);
@@ -71,25 +101,33 @@ namespace DropOnMe
                 }
                 }
             
-            writeCommand("cd..");//done with cmd
-            //YtFileInfo  fileInfo = JsonSerializer.Deserialize<YtFileInfo>(jsonString)!;
+            writeCommand("cd..");//done with cmd                                                        
+        }
+        //***************************
+        public string readFileWaitForReady(string fileName) {
+            string fileString = null;
+            int cnt = 0;
+            while (true)
+            {
+                try
+                {
+                    fileString = File.ReadAllText(fileName);
+                    break;
+                }
+                catch
+                {
+                    System.Threading.Thread.Sleep(100);
+                    cnt += 1;
+                }
+            }
+            Console.WriteLine("POLLED file ready:" + cnt + " times");
+            return fileString;
+        }
+        //*****************************
+        public void prettyPrintFormats(YtdlpDump d,Format f) {
 
-            //TODO
-            //READ i.e parse here as native json.net!
-            //next uses third party commandline tool to parse
-            /*
-            writeCommand("yt-dlp -j --flat-playlist " + urlPlaylist + " | jq -r " + ".url > listUris.log");
-            */
+            System.Console.WriteLine(f.format_id);
 
-
-            //            cmd.StartInfo.RedirectStandardInput = false;
-            /*
-            cmd.StandardInput.Close();
-            cmd.WaitForExit();
-            */
-
-
-            //  tb.Text = cmd.StandardOutput.ReadToEnd();
         }
     }
 }

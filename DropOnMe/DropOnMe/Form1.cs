@@ -10,9 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-
-
-
+using System.Threading;
 
 namespace DropOnMe
 {
@@ -128,10 +126,10 @@ namespace DropOnMe
             startInfo.RedirectStandardInput = true;
 
             Process process = Process.Start(startInfo);
-            YtListParser parser = new YtListParser(process, this.textBox_logbox,urlSoittolista);
+            //YtListParser parser = new YtListParser(process, this.textBox_logbox,urlSoittolista);
 
-            parser.writeCommand("time /t");
-            parser.writeFormatsToTextfile();
+            //parser.writeCommand("time /t");
+            //parser.writeFormatsToTextfile();
             //            startInfo.RedirectStandardOutput = true;                        
             downloadPlaylist(process,urlSoittolista);
 
@@ -181,6 +179,36 @@ namespace DropOnMe
         {
 
             Process.Start(@".\output\playlists");
+        }
+        
+        //****************************************
+        private void formatsButton_Click(object sender, EventArgs e)
+        {
+
+            string urlSoittolista = "\"" + textBox_playlistaddress.Text + "\"";
+            System.Environment.CurrentDirectory = @".\";
+            //System.Diagnostics.Process.Start("run1_setenv.bat", urlSoittolista);
+            //urlSoittolista = urlSoittolista.Replace("&", "^&");
+
+            var startInfo = new ProcessStartInfo();
+
+            startInfo.UseShellExecute = false;
+            startInfo.WorkingDirectory = @".";
+
+            startInfo.FileName = @"C:\Windows\System32\cmd.exe";
+            startInfo.Verb = "runas";
+
+            startInfo.Arguments = "K";
+            startInfo.RedirectStandardInput = true;
+
+            Process process = Process.Start(startInfo);
+            
+            YtListParser parser = new YtListParser(process, this.textBox_logbox, urlSoittolista);
+
+            parser.writeCommand("time /t");
+            parser.writeFormatsToTextfile();
+            //            startInfo.RedirectStandardOutput = true;                        
+            
         }
     }
 }

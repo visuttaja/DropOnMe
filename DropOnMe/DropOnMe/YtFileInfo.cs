@@ -41,7 +41,7 @@
         public string urls { get; set; }
         public _Version _version { get; set; }
     }
-
+    /*
     public class _Version
     {
         public string version { get; set; }
@@ -49,11 +49,13 @@
         public string release_git_head { get; set; }
         public string repository { get; set; }
     }
-
+    */
+    /*
     public class Thumbnail
     {
         public string url { get; set; }
         public int height { get; set; }
         public int width { get; set; }
     }
+    */
 }
